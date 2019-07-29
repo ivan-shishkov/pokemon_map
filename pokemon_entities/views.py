@@ -21,6 +21,17 @@ def add_pokemon(folium_map, lat, lon, name, image_url=DEFAULT_IMAGE_URL):
     ).add_to(folium_map)
 
 
+def get_essential_pokemon_info(pokemon):
+    if not pokemon:
+        return None
+
+    return {
+        'pokemon_id': pokemon.id,
+        'img_url': pokemon.image.url if pokemon.image else DEFAULT_IMAGE_URL,
+        'title_ru': pokemon.title,
+    }
+
+
 def show_all_pokemons(request):
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
@@ -35,11 +46,7 @@ def show_all_pokemons(request):
         )
 
     pokemons_on_page = [
-        {
-            'pokemon_id': pokemon.id,
-            'img_url': pokemon.image.url if pokemon.image else DEFAULT_IMAGE_URL,
-            'title_ru': pokemon.title,
-        }
+        get_essential_pokemon_info(pokemon)
         for pokemon in Pokemon.objects.all()
     ]
 
