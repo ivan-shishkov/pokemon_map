@@ -81,6 +81,7 @@ def show_pokemon(request, pokemon_id):
         'title_en': pokemon.title_en,
         'title_jp': pokemon.title_jp,
         'description': pokemon.description,
+        'next_evolution': get_essential_pokemon_info(pokemon.next_evolution),
     }
 
     return render(request, "pokemon.html", context={
