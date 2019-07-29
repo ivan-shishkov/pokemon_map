@@ -11,6 +11,8 @@ class Pokemon(models.Model):
     image = models.ImageField(upload_to='pokemons', null=True, blank=True)
     description = models.TextField(default='', blank=True)
 
+    next_evolution = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+
     def __str__(self):
         return f'{self.title}'
 
