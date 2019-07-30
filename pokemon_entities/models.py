@@ -13,7 +13,7 @@ class Pokemon(models.Model):
 
     next_evolution = models.ForeignKey(
         'self',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name='previous_evolution',
         null=True,
         blank=True,
