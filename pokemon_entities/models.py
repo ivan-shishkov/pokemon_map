@@ -43,3 +43,10 @@ class PokemonEntity(models.Model):
 
     def __str__(self):
         return f'{self.pokemon} ({self.latitude}, {self.longitude})'
+
+
+class PokemonElementType(models.Model):
+    title = models.CharField('название', max_length=200)
+
+    def __str__(self):
+        return f'{self.title}'
