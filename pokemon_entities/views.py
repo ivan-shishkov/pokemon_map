@@ -37,7 +37,7 @@ def add_pokemon_entity_to_map(pokemon_entity, folium_map):
         [pokemon_entity.latitude, pokemon_entity.longitude],
         tooltip=pokemon_entity.pokemon.title,
         icon=icon,
-        popup=get_pokemon_entity_popup_content(pokemon_entity),
+        popup=folium.Popup(get_pokemon_entity_popup_content(pokemon_entity), max_width=150),
     ).add_to(folium_map)
 
 
