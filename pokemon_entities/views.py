@@ -54,6 +54,9 @@ def get_pokemon_element_type_info(pokemon):
         {
             'title': element_type.title,
             'img': element_type.image.url if element_type.image else DEFAULT_IMAGE_URL,
+            'strong_against': [
+                weak_type.title for weak_type in element_type.strong_against.all()
+            ],
         }
         for element_type in pokemon.element_type.all()
     ]
