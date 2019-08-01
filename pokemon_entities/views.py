@@ -18,6 +18,9 @@ def get_pokemon_entity_popup_content(pokemon_entity):
         f'<h4>{pokemon_entity.pokemon.title}</h4>',
         f'<h5>Уровень: {get_string_representation(pokemon_entity.level)}</h5>',
         f'<h5>Здоровье: {get_string_representation(pokemon_entity.health)}</h5>',
+        f'<h5>Сила: {get_string_representation(pokemon_entity.strength)}</h5>',
+        f'<h5>Защита: {get_string_representation(pokemon_entity.defence)}</h5>',
+        f'<h5>Выносливость: {get_string_representation(pokemon_entity.stamina)}</h5>',
     ]
     return ''.join(info_strings)
 
