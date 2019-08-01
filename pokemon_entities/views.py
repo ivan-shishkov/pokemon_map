@@ -10,7 +10,7 @@ DEFAULT_IMAGE_URL = "https://vignette.wikia.nocookie.net/pokemon/images/6/6e/%21
 
 
 def get_string_representation(pokemon_entity_property):
-    return str(pokemon_entity_property) if pokemon_entity_property else 'N/A'
+    return str(pokemon_entity_property) if pokemon_entity_property is not None else 'N/A'
 
 
 def get_pokemon_entity_popup_content(pokemon_entity):
