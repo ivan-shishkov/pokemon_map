@@ -49,6 +49,16 @@ def get_essential_pokemon_info(pokemon):
     }
 
 
+def get_pokemon_element_type_info(pokemon):
+    return [
+        {
+            'title': element_type.title,
+            'img': element_type.image.url if element_type.image else DEFAULT_IMAGE_URL,
+        }
+        for element_type in pokemon.element_type.all()
+    ]
+
+
 def show_all_pokemons(request):
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
@@ -92,6 +102,7 @@ def show_pokemon(request, pokemon_id):
         'description': pokemon.description,
         'previous_evolution': get_essential_pokemon_info(pokemon.previous_evolution),
         'next_evolution': get_essential_pokemon_info(pokemon.next_evolution.first()),
+        'element_type': get_pokemon_element_type_info(pokemon),
     }
 
     return render(request, "pokemon.html", context={
