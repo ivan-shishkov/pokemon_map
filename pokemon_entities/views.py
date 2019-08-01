@@ -27,10 +27,10 @@ def get_pokemon_entity_popup_content(pokemon_entity):
 
 def add_pokemon_entity_to_map(pokemon_entity, folium_map):
     image = pokemon_entity.pokemon.image
-    image_url = image.path if image else DEFAULT_IMAGE_URL
+    image_location = image.path if image else DEFAULT_IMAGE_URL
 
     icon = folium.features.CustomIcon(
-        image_url,
+        image_location,
         icon_size=(50, 50),
     )
     folium.Marker(
