@@ -2,6 +2,10 @@ from django.db import models
 
 
 class PokemonElementType(models.Model):
+    class Meta:
+        verbose_name = 'стихия'
+        verbose_name_plural = 'стихии'
+
     title = models.CharField('название', max_length=200)
     image = models.ImageField('значок', upload_to='element_types', null=True, blank=True)
 
@@ -17,6 +21,10 @@ class PokemonElementType(models.Model):
 
 
 class Pokemon(models.Model):
+    class Meta:
+        verbose_name = 'покемон'
+        verbose_name_plural = 'покемоны'
+
     title = models.CharField('название', max_length=200)
     title_en = models.CharField('название (англ)', max_length=200, default='', blank=True)
     title_jp = models.CharField('название (япон)', max_length=200, default='', blank=True)
@@ -44,6 +52,10 @@ class Pokemon(models.Model):
 
 
 class PokemonEntity(models.Model):
+    class Meta:
+        verbose_name = 'экземпляр покемона'
+        verbose_name_plural = 'экземпляры покемонов'
+
     pokemon = models.ForeignKey(
         Pokemon,
         on_delete=models.CASCADE,
