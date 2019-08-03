@@ -52,7 +52,7 @@ def get_essential_pokemon_info(pokemon):
     }
 
 
-def get_pokemon_element_type_info(pokemon):
+def get_pokemon_element_types_info(pokemon):
     return [
         {
             'title': element_type.title,
@@ -61,7 +61,7 @@ def get_pokemon_element_type_info(pokemon):
                 weak_type.title for weak_type in element_type.strong_against.all()
             ],
         }
-        for element_type in pokemon.element_type.all()
+        for element_type in pokemon.element_types.all()
     ]
 
 
@@ -107,8 +107,8 @@ def show_pokemon(request, pokemon_id):
         'title_jp': pokemon.title_jp,
         'description': pokemon.description,
         'previous_evolution': get_essential_pokemon_info(pokemon.previous_evolution),
-        'next_evolution': get_essential_pokemon_info(pokemon.next_evolution.first()),
-        'element_type': get_pokemon_element_type_info(pokemon),
+        'next_evolution': get_essential_pokemon_info(pokemon.next_evolutions.first()),
+        'element_types': get_pokemon_element_types_info(pokemon),
     }
 
     return render(request, "pokemon.html", context={

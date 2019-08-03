@@ -32,7 +32,7 @@ class Pokemon(models.Model):
     image = models.ImageField('картинка', upload_to='pokemons', null=True, blank=True)
     description = models.TextField('описание', default='', blank=True)
 
-    element_type = models.ManyToManyField(
+    element_types = models.ManyToManyField(
         PokemonElementType,
         verbose_name='стихии',
         blank=True,
@@ -41,7 +41,7 @@ class Pokemon(models.Model):
     previous_evolution = models.ForeignKey(
         'self',
         verbose_name='из кого эволюционировал',
-        related_name='next_evolution',
+        related_name='next_evolutions',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
