@@ -61,14 +61,14 @@ def get_pokemon_element_types_info(pokemon):
                 weak_type.title for weak_type in element_type.strong_against.all()
             ],
         }
-        for element_type in pokemon.element_types.all()
+        for element_type in pokemon.element_types.all().prefetch_related('strong_against')
     ]
 
 
 def show_all_pokemons(request):
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
-    for pokemon_entity in PokemonEntity.objects.all():
+    for pokemon_entity in PokemonEntity.objects.all().select_related('pokemon'):
         add_pokemon_entity_to_map(
             pokemon_entity=pokemon_entity,
             folium_map=folium_map,
@@ -93,7 +93,7 @@ def show_pokemon(request, pokemon_id):
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
-    for pokemon_entity in PokemonEntity.objects.filter(pokemon=pokemon):
+    for pokemon_entity in PokemonEntity.objects.filter(pokemon=pokemon).select_related('pokemon'):
         add_pokemon_entity_to_map(
             pokemon_entity=pokemon_entity,
             folium_map=folium_map,
